@@ -97,7 +97,7 @@ def call(body) {
   print "microserviceBuilderPipeline: helmSecret: ${helmSecret}"
 
   podTemplate(
-    label: 'msbPod',
+    label: 'microclimatePod',
     inheritFrom: 'default',
     serviceAccount: serviceAccountName,
     containers: [
@@ -109,7 +109,8 @@ def call(body) {
       containerTemplate(name: 'kubectl', image: kubectl, ttyEnabled: true, command: 'cat'),
       containerTemplate(name: 'helm', image: helm, ttyEnabled: true, command: 'cat'),
     ],
-    volumes: volumes
+    volumes: volumes,
+    idleMinutes: 600
   ) {
     node('msbPod') {
       def gitCommit
