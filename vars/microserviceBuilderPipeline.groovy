@@ -112,7 +112,7 @@ def call(body) {
     volumes: volumes,
     idleMinutes: 600
   ) {
-    node('msbPod') {
+    node('microclimatePod') {
       def gitCommit
       def gitCommitMessage
       def fullCommitID
